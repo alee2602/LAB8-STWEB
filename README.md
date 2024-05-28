@@ -38,12 +38,26 @@ npm run dev
 ## Run Tests
 5. Configure Jest
    ``` bash
-npm install --save-dev jest @testing-library/react @testing-library/jest-dom
-```
+   npm install --save-dev jest @testing-library/react @testing-library/jest-dom
+   ```
+   
 6. Run Test
  ``` bash
-npm test
+   npm test
 ```
+
+## Run Storybook
+7. Configure Storybook
+ ``` bash
+      npx sb init
+   ```
+
+8. Run Storybook
+ ``` bash
+      npm run storybook
+   ```
+   
+
 
 
 
