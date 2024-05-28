@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
+import Display from "@/components/Display";
+import Keypad from "@/components/Keypad";
 import styles from '@/styles/calculator.module.scss';
 
 function Calculator() {
@@ -93,34 +95,32 @@ function Calculator() {
     }
   };
 
+  const handleButtonClick = (label) => {
+    if (!isNaN(label)) {
+      handleNumberClick(label);
+    } else if (label === 'CE') {
+      setDisplay('');
+    } else if (label === 'C') {
+      handleClearClick();
+    } else if (label === '+/-') {
+      handlePlusMinusClick();
+    } else if (label === '.') {
+      handleDecimalClick();
+    } else if (label === '=') {
+      handleEqualClick();
+    } else {
+      handleOperationClick(label);
+    }
+  };
+
   return (
-    <div className={styles.calculator}>
-      <div className={styles.display}>{display || '0'}</div>
-      <div className={styles.keypad}>
-        <button className={`${styles.button} ${styles.operation}`} onClick={handleClearClick}>CE</button>
-        <button className={`${styles.button} ${styles.operation}`} onClick={() => setDisplay('')}>C</button>
-        <button className={`${styles.button} ${styles.operation}`} onClick={handlePlusMinusClick}>+/-</button>
-        <button className={`${styles.button} ${styles.operation}`} onClick={() => handleOperationClick('%')}>%</button>
-        <button className={`${styles.button} ${styles.number}`} onClick={() => handleNumberClick('7')}>7</button>
-        <button className={`${styles.button} ${styles.number}`} onClick={() => handleNumberClick('8')}>8</button>
-        <button className={`${styles.button} ${styles.number}`} onClick={() => handleNumberClick('9')}>9</button>
-        <button className={`${styles.button} ${styles.operation}`} onClick={() => handleOperationClick('/')}>/</button>
-        <button className={`${styles.button} ${styles.number}`} onClick={() => handleNumberClick('4')}>4</button>
-        <button className={`${styles.button} ${styles.number}`} onClick={() => handleNumberClick('5')}>5</button>
-        <button className={`${styles.button} ${styles.number}`} onClick={() => handleNumberClick('6')}>6</button>
-        <button className={`${styles.button} ${styles.operation}`} onClick={() => handleOperationClick('*')}>*</button>
-        <button className={`${styles.button} ${styles.number}`} onClick={() => handleNumberClick('1')}>1</button>
-        <button className={`${styles.button} ${styles.number}`} onClick={() => handleNumberClick('2')}>2</button>
-        <button className={`${styles.button} ${styles.number}`} onClick={() => handleNumberClick('3')}>3</button>
-        <button className={`${styles.button} ${styles.operation}`} onClick={() => handleOperationClick('-')}>-</button>
-        <button className={`${styles.button} ${styles.number} ${styles.zero}`} onClick={() => handleNumberClick('0')}>0</button>
-        <button className={`${styles.button} ${styles.number}`} onClick={handleDecimalClick}>.</button>
-        <button className={`${styles.button} ${styles.operation}`} onClick={() => handleOperationClick('+')}>+</button>
-        <button className={`${styles.button} ${styles.equals}`} onClick={handleEqualClick}>=</button>
+    <div className={styles.container}>
+      <div className={styles.calculator}>
+        <Display value={display} />
+        <Keypad onButtonClick={handleButtonClick} />
       </div>
     </div>
   );
-}
+};
 
 export default Calculator;
-

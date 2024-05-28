@@ -1,0 +1,31 @@
+.button {
+    padding: 15px;
+    font-size: 1.2em;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    background: #8AD5FF;
+    color: #000000;
+
+    &.operation {
+        background: #003E56;
+        color: #8FDBF8;
+    }
+
+    &.equals {
+        background: #428AB2;
+        color: #8FDBF8;
+        grid-column: span 4;  
+        border-radius: 25px;
+    }
+
+    &.zero {
+        grid-column: span 2;
+        border-radius: 25px;
+    }
+
+    &:hover {
+        background: #ffc0cb;
+    }
+}
