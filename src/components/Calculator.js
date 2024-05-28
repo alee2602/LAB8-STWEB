@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import Display from "@/components/Display";
 import Keypad from "@/components/Keypad";
 import styles from '@/styles/calculator.module.scss';
