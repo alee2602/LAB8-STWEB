@@ -6,7 +6,7 @@ import Keypad from "@/components/Keypad";
 import styles from '@/styles/calculator.module.scss';
 
 function Calculator() {
-  const [display, setDisplay] = useState('');
+  const [display, setDisplay] = useState('0');
   const [operation, setOperation] = useState(null);
   const [previousValue, setPreviousValue] = useState(null);
   const [getNewValue, setNewValue] = useState(false);
@@ -17,7 +17,7 @@ function Calculator() {
       setNewValue(false);
     } else {
       if (display.length < 9) {
-        setDisplay(display + number);
+        setDisplay(display === '0' ? number : display + number);
       }
     }
   };
@@ -51,9 +51,7 @@ function Calculator() {
       return firstValue * secondValue;
     } else if (operation === '/') {
       return firstValue / secondValue;
-    } else if (operation === '%') {
-      return firstValue % secondValue;
-    }
+    } 
     return secondValue;
   };
 
@@ -73,7 +71,7 @@ function Calculator() {
   };
 
   const handleClearClick = () => {
-    setDisplay('');
+    setDisplay('0');
     setPreviousValue(null);
     setOperation(null);
     setNewValue(false);
@@ -95,11 +93,19 @@ function Calculator() {
     }
   };
 
+  const handlePercentageClick = () => {
+    const value = parseFloat(display);
+    if (!isNaN(value)) {
+      setDisplay(String(value / 100).slice(0, 9));
+      setNewValue(true);
+    }
+  };
+
   const handleButtonClick = (label) => {
     if (!isNaN(label)) {
       handleNumberClick(label);
     } else if (label === 'CE') {
-      setDisplay('');
+      setDisplay('0');
     } else if (label === 'C') {
       handleClearClick();
     } else if (label === '+/-') {
@@ -108,6 +114,8 @@ function Calculator() {
       handleDecimalClick();
     } else if (label === '=') {
       handleEqualClick();
+    } else if (label === '%') {
+      handlePercentageClick();
     } else {
       handleOperationClick(label);
     }

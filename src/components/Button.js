@@ -7,6 +7,7 @@ function Button ({ label, onClick, type }) {
         <button
             className={`${styles.button} ${styles[type]}`}
             onClick={onClick}
+            aria-label={label}
         >
             {label}
         </button>

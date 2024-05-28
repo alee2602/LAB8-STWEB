@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from '@/styles/display.module.scss';
 
 function Display ({ value }) {
-    return <div className={styles.display}>{value || '0'}</div>;
+    return <div className={styles.display} role="status">{value}</div>;
 };
 
 Display.propTypes = {
