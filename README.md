@@ -49,12 +49,12 @@ npm run dev
 ## Run Storybook
 7. Configure Storybook
  ``` bash
-      npx sb init
+ npx sb init
    ```
 
 8. Run Storybook
  ``` bash
-      npm run storybook
+ npm run storybook
    ```
    
 
